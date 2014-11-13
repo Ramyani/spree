@@ -12,17 +12,6 @@ module Spree
 
     attr_accessible :amount, :reason
 
-    state_machine :initial => 'authorized' do
-      after_transition :to => 'received', :do => :process_return
-
-      event :receive do
-        transition :to => 'received', :from => 'authorized', :if => :allow_receive?
-      end
-      event :cancel do
-        transition :to => 'canceled', :from => 'authorized'
-      end
-    end
-
     def add_variant(variant_id, quantity)
       order_units = order.inventory_units.group_by(&:variant_id)
       returned_units = inventory_units.group_by(&:variant_id)
