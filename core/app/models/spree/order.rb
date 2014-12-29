@@ -49,8 +49,8 @@ module Spree
     belongs_to :shipping_method
 
     has_many :state_changes, :as => :stateful
-    has_many :line_items, inverse_of: :order, :dependent => :destroy
-    has_many :inventory_units, inverse_of: :order
+    has_many :line_items, :dependent => :destroy
+    has_many :inventory_units
     has_many :payments, :dependent => :destroy
     has_many :shipments, :dependent => :destroy
     has_many :return_authorizations, :dependent => :destroy
