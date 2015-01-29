@@ -146,23 +146,6 @@ Spree::Core::Engine.routes.draw do
       end
     end
 
-    resources :taxonomies do
-    	collection do
-    		post :update_positions
-    	end
-      member do
-        get :get_children
-      end
-
-      resources :taxons
-    end
-
-    resources :taxons, :only => [] do
-      collection do
-        get :search
-      end
-    end
-
     resources :reports, :only => [:index, :show] do
       collection do
         get :sales_total
