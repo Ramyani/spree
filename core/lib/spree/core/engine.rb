@@ -59,8 +59,7 @@ module Spree
       initializer "spree.register.payment_methods" do |app|
         app.config.spree.payment_methods = [
             Spree::Gateway::Bogus,
-            Spree::Gateway::BogusSimple,
-            Spree::PaymentMethod::Check ]
+            Spree::Gateway::BogusSimple ]
       end
 
       # filter sensitive information during logging

@@ -8,37 +8,6 @@ describe "Payment Methods" do
     click_link "Configuration"
   end
 
-  context "admin visiting payment methods listing page" do
-    it "should display existing payment methods" do
-      2.times { create(:payment_method) }
-      click_link "Payment Methods"
-
-      find('table#listing_payment_methods th:nth-child(1)').text.should == "Name"
-      find('table#listing_payment_methods th:nth-child(2)').text.should == "Provider"
-      find('table#listing_payment_methods th:nth-child(3)').text.should == "Environment"
-      find('table#listing_payment_methods th:nth-child(4)').text.should == "Display"
-      find('table#listing_payment_methods th:nth-child(5)').text.should == "Active"
-
-      # Ensure that it displays the two payment methods we have created
-      within('table#listing_payment_methods') do
-        page.should have_content("Spree::PaymentMethod::Check")
-      end
-    end
-  end
-
-  context "admin creating a new payment method" do
-    it "should be able to create a new payment method" do
-      click_link "Payment Methods"
-      click_link "admin_new_payment_methods_link"
-      page.should have_content("New Payment Method")
-      fill_in "payment_method_name", :with => "check90"
-      fill_in "payment_method_description", :with => "check90 desc"
-      select "PaymentMethod::Check", :from => "gtwy-type"
-      click_button "Create"
-      page.should have_content("successfully created!")
-    end
-  end
-
   context "admin editing a payment method" do
     before(:each) do
       2.times { create(:payment_method) }

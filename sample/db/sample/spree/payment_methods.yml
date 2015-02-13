@@ -4,11 +4,6 @@ bogus_dev:
   environment: development
   active: true
   type: Spree::Gateway::Bogus
-check_method:
-  name: Check
-  description: Pay by check.
-  active: true
-  type: Spree::PaymentMethod::Check
 bogus_test:
   name: Credit Card
   description: Bogus payment gateway for test.
